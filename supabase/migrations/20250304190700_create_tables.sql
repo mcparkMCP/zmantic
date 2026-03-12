@@ -1,4 +1,4 @@
--- TempleTools Database Schema
+-- Zmantic Database Schema
 -- Run this in Supabase SQL Editor
 
 -- 1. Temples

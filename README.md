@@ -1,6 +1,6 @@
-# TempleTools
+# Zmantic
 
-Free multi-tenant website platform for ISKCON temples worldwide. Every temple gets a page at `templetools.org/{temple-slug}` with schedules, events, gallery, map, and online donations.
+Free multi-tenant website platform for ISKCON temples worldwide. Every temple gets a page at `zmantic.com/{temple-slug}` with schedules, events, gallery, map, and online donations.
 
 ## Tech Stack
 
@@ -31,8 +31,8 @@ Free multi-tenant website platform for ISKCON temples worldwide. Every temple ge
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/chaollapark/templetools.git
-cd templetools
+git clone https://github.com/mcparkMCP/zmantic.git
+cd zmantic
 npm install
 ```
 
@@ -40,8 +40,8 @@ npm install
 
 1. Create a new Supabase project at [supabase.com](https://supabase.com)
 2. Go to SQL Editor and run the migration files in order:
-   - `supabase/migrations/001_create_tables.sql` — creates all 6 tables
-   - `supabase/migrations/002_rls_policies.sql` — enables Row Level Security
+   - `supabase/migrations/20250304190700_create_tables.sql` — creates all 6 tables
+   - `supabase/migrations/20250304190800_rls_policies.sql` — enables Row Level Security
 3. Copy your project URL and keys from Settings > API
 
 ### 3. Configure Environment
@@ -105,7 +105,7 @@ For production, add the webhook endpoint in [Stripe Dashboard](https://dashboard
 ## Project Structure
 
 ```
-templetools/
+zmantic/
 ├── scripts/                    # Scraping pipeline
 ├── supabase/migrations/        # SQL schema + RLS policies
 ├── src/

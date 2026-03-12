@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "TempleTools - Free Websites for ISKCON Temples",
-    template: "%s | TempleTools",
+    default: "Zmantic - Free Websites for ISKCON Temples",
+    template: "%s | Zmantic",
   },
   description:
     "Free website platform for 700+ ISKCON temples worldwide. Find temple schedules, events, and donate online.",
   openGraph: {
-    title: "TempleTools - Free Websites for ISKCON Temples",
+    title: "Zmantic - Free Websites for ISKCON Temples",
     description:
       "Free website platform for 700+ ISKCON temples worldwide.",
     type: "website",

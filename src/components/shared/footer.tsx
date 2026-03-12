@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-lg mb-2">TempleTools</h3>
+            <h3 className="font-bold text-lg mb-2">Zmantic</h3>
             <p className="text-sm text-muted-foreground">
               Free website platform for ISKCON temples worldwide. Every temple
               deserves a web presence.

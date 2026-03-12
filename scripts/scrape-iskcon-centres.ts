@@ -30,7 +30,7 @@ async function tryWpApi(): Promise<RawTemple[] | null> {
 
   try {
     const res = await fetch(
-      "https://centres.iskcon.org/wp-json/wp/v2/job_listing?per_page=100&page=1",
+      "https://centres.iskcon.org/wp-json/wp/v2/job-listings?per_page=100&page=1",
       { signal: AbortSignal.timeout(15000) }
     );
 
@@ -50,7 +50,7 @@ async function tryWpApi(): Promise<RawTemple[] | null> {
     for (let page = 2; page <= totalPages; page++) {
       console.log(`  Fetching page ${page}/${totalPages}...`);
       const pageRes = await fetch(
-        `https://centres.iskcon.org/wp-json/wp/v2/job_listing?per_page=100&page=${page}`,
+        `https://centres.iskcon.org/wp-json/wp/v2/job-listings?per_page=100&page=${page}`,
         { signal: AbortSignal.timeout(15000) }
       );
       if (pageRes.ok) {
@@ -71,18 +71,19 @@ async function tryWpApi(): Promise<RawTemple[] | null> {
 function parseWpListings(listings: any[]): RawTemple[] {
   return listings.map((listing: any) => {
     const meta = listing.meta || {};
+    const location = meta._job_location || "";
+    // Parse location string: "address, city, state, country" pattern
+    const parts = location.split(",").map((s: string) => s.trim());
+    const country = parts.length > 1 ? parts[parts.length - 1] : "";
+    const city = parts.length > 2 ? parts[parts.length - 2] : parts[0] || "";
+
     return {
       name: decodeHtml(listing.title?.rendered || ""),
-      address: meta._job_location || meta.geolocation_formatted_address || "",
-      city: meta.geolocation_city || "",
-      state: meta.geolocation_state_long || "",
-      country: meta.geolocation_country_long || "",
-      postal_code: meta.geolocation_postcode || "",
-      phone: meta._job_phone || "",
-      email: meta._job_email || "",
-      website: meta._job_website || "",
-      lat: parseFloat(meta.geolocation_lat) || undefined,
-      lng: parseFloat(meta.geolocation_long) || undefined,
+      address: location,
+      city,
+      country,
+      email: meta._application?.includes("@") ? meta._application : "",
+      website: meta._company_website || "",
       source_url: listing.link || "",
       source: "centres.iskcon.org",
     };
