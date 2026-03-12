@@ -15,6 +15,8 @@ export default async function HomePage() {
     .from("temples")
     .select("*", { count: "exact" })
     .eq("is_published", true)
+    .not("cover_image", "is", null)
+    .neq("cover_image", "")
     .order("name")
     .limit(6);
 
@@ -29,31 +31,28 @@ export default async function HomePage() {
       <section className="relative py-20 md:py-32 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            Every ISKCON Temple
+            Find People
             <br />
-            <span className="text-primary">Deserves a Website</span>
+            <span className="text-primary">Looking for God</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Free website platform for 700+ ISKCON temples worldwide. Find
-            schedules, events, and support your local temple.
+            We organize your data so you only preach to people who showed
+            interest
           </p>
 
-          {/* Search */}
-          <form action="/temples" method="GET" className="max-w-lg mx-auto">
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  name="q"
-                  placeholder="Search temples by name or city..."
-                  className="pl-10 h-12"
-                />
-              </div>
-              <Button type="submit" size="lg">
-                Search
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/auth/signup" className="w-full sm:w-64">
+              <Button size="lg" className="w-full">
+                Claim Your Free Website
               </Button>
-            </div>
-          </form>
+            </Link>
+            <Link href="/temples" className="w-full sm:w-64">
+              <Button size="lg" variant="outline" className="w-full">
+                Use OpenClaw for Your Temple
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 

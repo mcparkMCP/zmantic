@@ -64,10 +64,9 @@ async function main() {
     from += pageSize;
   }
   const temples = allTemples;
-  const error = temples.length === 0 ? null : null;
 
-  if (error || !temples) {
-    console.error("Failed to fetch temples:", error?.message);
+  if (!temples || temples.length === 0) {
+    console.error("No temples found that need geocoding");
     process.exit(1);
   }
 
